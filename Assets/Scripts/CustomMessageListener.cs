@@ -16,6 +16,9 @@ using System.Collections;
  */
 public class CustomMessageListener : MonoBehaviour
 {
+    private bool[] tiltStates = new bool[16];
+    private float[] tiltDownTime = new float[16];
+
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
     {
@@ -27,12 +30,12 @@ public class CustomMessageListener : MonoBehaviour
         if (line.StartsWith("C:")) // Example: "C:255,128,0"
         {
             //Debug.Log("Color");
-            ParseColor(line.Substring(2));
+            //ParseColor(line.Substring(2));
         }
         else if (line.StartsWith("T")) // Example: "T0:1"
         {
-            //Debug.Log("Tilt");
-            //ParseTilt(line);
+            //Debug.Log(line);
+            ParseTilt(line);
         }
     }
 
@@ -47,6 +50,32 @@ public class CustomMessageListener : MonoBehaviour
             Color color = new Color32(r, g, b, 255);
             NamedColor named = ColorMap.MapToNearestColor(color);
             Debug.Log($"Received color {color}, mapped to {named}");
+        }
+    }
+
+    private void ParseTilt(string line)
+    {
+        // Expecting something like "T3:1"
+        string[] parts = line.Substring(1).Split(':');
+        if (parts.Length == 2 &&
+            int.TryParse(parts[0], out int index) &&
+            int.TryParse(parts[1], out int state))
+        {
+            //the number received when its up is 1023 and when down is around the 80 mark
+            bool isDown = state <= 500;
+            if (tiltStates[index] != isDown)
+            {
+                tiltStates[index] = isDown;
+
+                if (isDown)
+                    tiltDownTime[index] = Time.time; // record press start
+                else
+                {
+                    float heldDuration = Time.time - tiltDownTime[index];
+                    Debug.Log($"Tilt switch {index} held for {heldDuration:F2} seconds");
+                    tiltDownTime[index] = 0;
+                }
+            }
         }
     }
 
