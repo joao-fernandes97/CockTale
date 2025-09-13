@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ad30ff2bcd379469cf2b1d49637bc4, type: 3}
   m_Name: Cursed Sunrise
   m_EditorClassIdentifier: Assembly-CSharp::Drink
-  <Recipe>k__BackingField: []
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Recipe>k__BackingField:
+  - {fileID: 11400000, guid: 3a6d0a0cbfe54074b93962c8a3bafcaf, type: 2}
+  - {fileID: 11400000, guid: 81a68c8c8e2c4c0429e99dc71a23c753, type: 2}
+  - {fileID: 11400000, guid: 9ecf01c28d5e5094cb9db22d1c6c324e, type: 2}
+  - {fileID: 11400000, guid: 56f009551a76cf44498c6cfedc0ed11b, type: 2}
+  <Color>k__BackingField: {r: 1, g: 0.4952801, b: 0, a: 1}
   <Sprite>k__BackingField: {fileID: 0}

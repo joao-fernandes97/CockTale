@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ad30ff2bcd379469cf2b1d49637bc4, type: 3}
   m_Name: Ichorfire
   m_EditorClassIdentifier: Assembly-CSharp::Drink
-  <Recipe>k__BackingField: []
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Recipe>k__BackingField:
+  - {fileID: 11400000, guid: d330b8f249053cf46b8547511e452428, type: 2}
+  - {fileID: 11400000, guid: 9134697dc13bfc4469b5d7be181b6995, type: 2}
+  - {fileID: 11400000, guid: a58511d5cb660f24989ea9409b3ad981, type: 2}
+  - {fileID: 11400000, guid: 56f009551a76cf44498c6cfedc0ed11b, type: 2}
+  <Color>k__BackingField: {r: 1, g: 0.41686434, b: 0, a: 1}
   <Sprite>k__BackingField: {fileID: 0}

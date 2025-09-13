@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Vile Vodka
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
   <Type>k__BackingField: 0
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <Particle>k__BackingField: {fileID: 0}
+  <Color>k__BackingField: {r: 0.6055535, g: 0.6055535, b: 0.6055535, a: 1}
+  <ParticleSytem>k__BackingField: {fileID: 0}

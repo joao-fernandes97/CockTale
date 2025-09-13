@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ad30ff2bcd379469cf2b1d49637bc4, type: 3}
   m_Name: Duskborn Tonic
   m_EditorClassIdentifier: Assembly-CSharp::Drink
-  <Recipe>k__BackingField: []
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Recipe>k__BackingField:
+  - {fileID: 11400000, guid: d7d85fb24a7165d4286882cfacb8e8b0, type: 2}
+  - {fileID: 11400000, guid: 9134697dc13bfc4469b5d7be181b6995, type: 2}
+  - {fileID: 11400000, guid: 44e072f62f1754f4b9dd815ed6409ce8, type: 2}
+  - {fileID: 11400000, guid: 6ee345ad9a4d543408a978a45e9b2b3e, type: 2}
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
   <Sprite>k__BackingField: {fileID: 0}

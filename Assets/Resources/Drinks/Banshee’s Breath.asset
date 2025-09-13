@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ad30ff2bcd379469cf2b1d49637bc4, type: 3}
   m_Name: "Banshee\u2019s Breath"
   m_EditorClassIdentifier: Assembly-CSharp::Drink
-  <Recipe>k__BackingField: []
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Recipe>k__BackingField:
+  - {fileID: 11400000, guid: d330b8f249053cf46b8547511e452428, type: 2}
+  - {fileID: 11400000, guid: 81a68c8c8e2c4c0429e99dc71a23c753, type: 2}
+  - {fileID: 11400000, guid: 44e072f62f1754f4b9dd815ed6409ce8, type: 2}
+  - {fileID: 11400000, guid: 6ee345ad9a4d543408a978a45e9b2b3e, type: 2}
+  <Color>k__BackingField: {r: 0.40540123, g: 0, b: 1, a: 1}
   <Sprite>k__BackingField: {fileID: 0}

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ad30ff2bcd379469cf2b1d49637bc4, type: 3}
   m_Name: "Demon\u2019s Delight"
   m_EditorClassIdentifier: Assembly-CSharp::Drink
-  <Recipe>k__BackingField: []
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+  <Recipe>k__BackingField:
+  - {fileID: 11400000, guid: 3a6d0a0cbfe54074b93962c8a3bafcaf, type: 2}
+  - {fileID: 11400000, guid: 34872fe55379966419ccb7c8d0db8795, type: 2}
+  - {fileID: 11400000, guid: 9ecf01c28d5e5094cb9db22d1c6c324e, type: 2}
+  - {fileID: 11400000, guid: 1d1d040916c701943ae917422642b252, type: 2}
+  <Color>k__BackingField: {r: 0, g: 1, b: 0.034552574, a: 1}
   <Sprite>k__BackingField: {fileID: 0}

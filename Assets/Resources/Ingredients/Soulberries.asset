@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Soulberries
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
   <Type>k__BackingField: 0
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <Particle>k__BackingField: {fileID: 0}
+  <Color>k__BackingField: {r: 0.5299039, g: 0.78610677, b: 1, a: 1}
+  <ParticleSytem>k__BackingField: {fileID: 0}
