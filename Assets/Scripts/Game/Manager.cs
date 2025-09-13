@@ -115,7 +115,10 @@ public class Manager : MonoBehaviour
 
             // when finished pouring
             if (_pour > 0.5f)
+            {
+                _end.ServeDrink(_currentDrink, _currentMix.ToArray());
                 OnEnable();
+            }
             return;
         }
         else
@@ -127,6 +130,7 @@ public class Manager : MonoBehaviour
             Debug.Log("Shaking. ");
             // shaking meter
 
+            _end.Shake();
             _shaker.ModifyShaker(dif, _currentMix.Count);
 
             // when finished shaking

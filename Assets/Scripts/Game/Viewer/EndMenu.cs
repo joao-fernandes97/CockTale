@@ -1,3 +1,5 @@
+using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,8 +9,68 @@ public class EndMenu : Menu
     [SerializeField] private SceneAsset _Menu;
     [SerializeField] private Clock _clock;
 
+    [SerializeField] private TMP_Text _scoreTMP;
+    [SerializeField] private TMP_Text _correctServedTMP;
+    [SerializeField] private TMP_Text _totalServedTMP;
+    [SerializeField] private TMP_Text _kdTMP;
+    [SerializeField] private TMP_Text _totalShakingTMP;
+    [SerializeField] private TMP_Text _averageShakingTMP;
+
+    private int _drinksServed;
+    private float _totalShakeTime;
+    private int _correctDrinks;
+    private int _score;
+
+    private float _shakeTime;
+
+    private void Start()
+    {
+        _drinksServed = 0;
+        _correctDrinks = 0;
+        _totalShakeTime = 0f;
+        _score = 0;
+        _shakeTime = 0f;
+    }
+
+    public void ServeDrink(Drink drink, Ingredient[] mix)
+    {
+        _drinksServed++;
+        _totalShakeTime += _shakeTime;
+        _shakeTime = 0f;
+        int correct = 0;
+
+        for (int i = 0; i < mix.Length; i++)
+        {
+            if (drink.Recipe.Length > i) break;
+
+            if (mix[i] == drink.Recipe[i])
+                correct++;
+            else
+                break;
+        }
+
+        if (correct == drink.Recipe.Length && mix.Length == drink.Recipe.Length)
+        {
+            _correctDrinks++;
+            _score += correct;
+        }
+        _score += correct / 2;
+    }
+
+    public void Shake()
+    {
+        _shakeTime += Time.deltaTime;
+    }
+
     private void OnEnable()
     {
+        _scoreTMP.text = _score.ToString();
+        _correctServedTMP.text = _correctDrinks.ToString();
+        _totalServedTMP.text = _drinksServed.ToString();
+        _kdTMP.text = (_drinksServed / _correctDrinks).ToString();
+        _totalShakingTMP.text = _totalShakeTime.ToString();
+        _averageShakingTMP.text = (_totalShakeTime / _drinksServed).ToString();
+
         _clock.StopTime(true);
     }
     private void OnDisable()
