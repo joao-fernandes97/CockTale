@@ -36,8 +36,6 @@ public class Manager : MonoBehaviour
         _pour = 0f;
 
         _end.gameObject.SetActive(false);
-
-        SpinWheel();
     }
 
     private void Update()
@@ -72,7 +70,7 @@ public class Manager : MonoBehaviour
         {
             drink = InputManager.CurrentDrink();
             yield return null;
-            Debug.Log("Ahoo drink: " + drink?.name);
+            // Debug.Log("Ahoo drink: " + drink?.name);
         }
         while (drink == null);
 
@@ -84,7 +82,7 @@ public class Manager : MonoBehaviour
         // send signals to arduino to light up each ingredient
         foreach (Ingredient ingredient in drink.Recipe)
         {
-            Debug.Log("Ahoo drink: " + ingredient?.name);
+            // Debug.Log("Ahoo drink: " + ingredient?.name);
 
             yield return interval;
             // turn on ingredient for arduino
@@ -95,7 +93,7 @@ public class Manager : MonoBehaviour
             _debugIngredient.color = Color.clear;
         }
 
-        Debug.Log("Ahoo");
+        // Debug.Log("Ahoo");
         _currentDrink = drink;
         _cor = null;
 
@@ -127,7 +125,7 @@ public class Manager : MonoBehaviour
         // get shake inputs
         if (_currentMix.Count > 0 && InputManager.Shaking(out float dif))
         {
-            Debug.Log("Shaking. ");
+            // Debug.Log("Shaking. ");
             // shaking meter
 
             _end.Shake();

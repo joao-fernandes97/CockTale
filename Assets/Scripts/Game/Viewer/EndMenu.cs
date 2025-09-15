@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndMenu : Menu
+public class EndMenu : MonoBehaviour
 {
     [SerializeField] private SceneAsset _Menu;
     [SerializeField] private Clock _clock;
@@ -67,9 +67,9 @@ public class EndMenu : Menu
         _scoreTMP.text = _score.ToString();
         _correctServedTMP.text = _correctDrinks.ToString();
         _totalServedTMP.text = _drinksServed.ToString();
-        _kdTMP.text = (_drinksServed / _correctDrinks).ToString();
+        _kdTMP.text = (_drinksServed / (_correctDrinks +1)).ToString();
         _totalShakingTMP.text = _totalShakeTime.ToString();
-        _averageShakingTMP.text = (_totalShakeTime / _drinksServed).ToString();
+        _averageShakingTMP.text = (_totalShakeTime / _drinksServed +1).ToString();
 
         _clock.StopTime(true);
     }

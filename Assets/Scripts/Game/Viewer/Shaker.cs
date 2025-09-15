@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Shaker : MonoBehaviour
 {
+    [SerializeField] private ObjectShaker[] _shakingObject;
     [SerializeField] private RectTransform _shake;
     [SerializeField] private float _shakeStrength = 0.1f;
 
@@ -11,11 +12,14 @@ public class Shaker : MonoBehaviour
     }
     public void ModifyShaker(float dif, int count) // camera should actually shake when this is called
     {
-        Debug.Log("new local scale " + dif);
+        // Debug.Log("new local scale " + dif);
 
-        float newValue = _shake.localScale.x + _shakeStrength * dif / (count + 1);
+        float newDif = _shakeStrength * dif / (count + 1);
 
-        SetShaker(newValue);
+        foreach (ObjectShaker obj in _shakingObject)
+            obj?.Shake(newDif, newDif);
+
+        SetShaker(_shake.localScale.x +newDif);
     }
 
     public void SetShaker(float newValue)
