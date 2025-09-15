@@ -6,8 +6,11 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [Header("Input Actions")]
-    [SerializeField] private InputAction shake;
-    [SerializeField] private InputAction pour;
+    [SerializeField] private InputAction _shake;
+    [SerializeField] private InputAction _pour;
+    [SerializeField] private InputAction _pause;
+
+    public static int PauseCount = 0;
     private static readonly Key[] DigitKeys = {
         Key.Digit0, Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4,
         Key.Digit5, Key.Digit6, Key.Digit7, Key.Digit8, Key.Digit9,
@@ -27,25 +30,39 @@ public class InputManager : MonoBehaviour
         _ingredients = Resources.LoadAll<Ingredient>("").ToList();
         _drinks = Resources.LoadAll<Drink>("").ToList();
 
-        shake = new InputAction(name: "Shake", type: InputActionType.Value, expectedControlType: "Axis");
-        var comp = shake.AddCompositeBinding("1DAxis");
+        _shake = new InputAction(name: "_shake", type: InputActionType.Value, expectedControlType: "Axis");
+        var comp = _shake.AddCompositeBinding("1DAxis");
         comp.With("negative", "<Keyboard>/w");
         comp.With("positive", "<Keyboard>/s");
 
-        pour = new InputAction(name: "Pour", type: InputActionType.Button);
-        pour.AddBinding("<Keyboard>/x").WithInteraction("press");
+        _pour = new InputAction(name: "_pour", type: InputActionType.Button);
+        _pour.AddBinding("<Keyboard>/x").WithInteraction("press");
+
+        _pause = new InputAction(name: "_pause", type: InputActionType.Button);
+        _pause.AddBinding("<Keyboard>/m").WithInteraction("press");
     }
 
     private void OnEnable()
     {
-        if (shake != null) shake.Enable();
-        if (pour  != null) pour.Enable();
+        if (_shake != null) _shake.Enable();
+        if (_pour  != null) _pour.Enable();
     }
 
     private void OnDisable()
     {
-        if (shake != null) shake.Disable();
-        if (pour  != null) pour.Disable();
+        if (_shake != null) _shake.Disable();
+        if (_pour  != null) _pour.Disable();
+    }
+
+    public static bool Pause()
+    {
+        if (_instance?._pause == null)
+            return false;
+
+        if (_instance._pause.ReadValue<float>() > 0f)
+            return true;
+        // if not tilting
+        return false;
     }
 
     private static float _previous = 0f;
@@ -54,8 +71,8 @@ public class InputManager : MonoBehaviour
         dif = 0f;
 
         float current = 0f;
-        if (_instance?.shake != null)
-            current = _instance.shake.ReadValue<float>();
+        if (_instance?._shake != null)
+            current = _instance._shake.ReadValue<float>();
         
         bool flipped = (current > 0f && _previous <= 0f) || (current < 0f && _previous >= 0f);
 
@@ -98,10 +115,10 @@ public class InputManager : MonoBehaviour
 
     public static bool Pouring()
     {
-        if (_instance?.pour == null)
+        if (_instance?._pour == null)
             return false;
 
-        if (_instance.pour.ReadValue<float>() > 0f)
+        if (_instance._pour.ReadValue<float>() > 0f)
             return true;
         // if not tilting
         return false;
