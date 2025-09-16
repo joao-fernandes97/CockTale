@@ -21,22 +21,25 @@ public class Manager : MonoBehaviour
 
     private Drink _currentDrink;
     private Queue<Ingredient> _currentMix;
+    public Ingredient[] Mix => _currentMix.ToArray();
 
     private bool _completedShaking = false;
 
     private float _pour = 0f;
 
+    private void Start()
+    {
+        _end.gameObject.SetActive(false);
+    }
+    
     public void OnEnable()
     {
-        _timer.OnEnable();
         _shaker.OnEnable();
 
         _currentDrink = null;
         _currentMix = new();
         _completedShaking = false;
         _pour = 0f;
-
-        _end.gameObject.SetActive(false);
     }
 
     private void Update()

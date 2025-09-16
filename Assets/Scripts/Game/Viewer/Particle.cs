@@ -4,30 +4,32 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds0_5 = new WaitForSeconds(0.5f);
-    [SerializeField] private ParticleSystem _particleSystem;
+    [field:SerializeField] public ParticleSystem System { get; private set; }
 
     private ParticleSystem.MainModule _main;
     private ParticleSystemRenderer _renderer;
 
     private void Awake()
     {
-        _renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
-        _main = _particleSystem.main;
+        _renderer = System.GetComponent<ParticleSystemRenderer>();
+        _main = System.main;
         _main.stopAction = ParticleSystemStopAction.None;
     }
 
     private void Start()
     {
+        System.gameObject.SetActive(true);
+        
         // no auto emission
-        _particleSystem.Stop();
+        System.Stop();
     }
 
     public void EmitIngredient(Ingredient ingredient)
     {
         if (ingredient == null) return;
 
-        // _particleSystem.gameObject.SetActive(true);
-        _particleSystem.Play();
+        // System.gameObject.SetActive(true);
+        System.Play();
 
         _main.startColor = ingredient.Color;
         Material mat = _renderer.material; ;
@@ -46,6 +48,6 @@ public class Particle : MonoBehaviour
     private IEnumerator Emit()
     {
         yield return _waitForSeconds0_5;
-        _particleSystem.Stop();
+        System.Stop();
     }
 }

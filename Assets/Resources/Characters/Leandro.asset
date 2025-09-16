@@ -16,3 +16,4 @@ MonoBehaviour:
   <Line>k__BackingField: primark
   <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 6f03311f3845e1640b5f8d6497ab56c3, type: 2}
   <FavoriteLine>k__BackingField: 
+  <Order>k__BackingField: 1

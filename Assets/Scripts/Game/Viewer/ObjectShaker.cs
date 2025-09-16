@@ -5,9 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ObjectShaker : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
-    [SerializeField] private float _duration = 0f;
-    [SerializeField] private float _magnitude = 0f;
+    private RectTransform _transform;
     private float _actualDuration = 0f;
     private float _actualMagnitude = 0f;
     private Vector3 _original;
@@ -17,7 +15,9 @@ public class ObjectShaker : MonoBehaviour
 
     private void Start()
     {
-        _original = _transform.localPosition;
+        _transform = GetComponent<RectTransform>();
+
+        _original = _transform.anchoredPosition;
 
         int seed = unchecked(Environment.TickCount ^ GetInstanceID());
         _rng = new System.Random(seed);
@@ -25,13 +25,8 @@ public class ObjectShaker : MonoBehaviour
 
     public void Shake(float duration = 0f, float magnitude = 0f)
     {
-        _actualDuration = _duration;
-        _actualMagnitude = _magnitude;
-
-        if (duration != 0f)
-            _actualDuration *= duration;
-        if (magnitude != 0f)
-            _actualMagnitude *= magnitude;
+        _actualDuration = duration;
+        _actualMagnitude = magnitude;
 
         Debug.Log("Set actuals as dur: " + _actualDuration + " and mag: " + _actualMagnitude);
 
@@ -42,12 +37,15 @@ public class ObjectShaker : MonoBehaviour
 
     private IEnumerator StartShaker()
     {
+        if (_transform == null)
+            yield break; 
+
         float x;
         float y;
 
         do
         {
-            _transform.localPosition = _original;
+            _transform.anchoredPosition = _original;
 
             float rx = (float)(_rng.NextDouble() * 2.0 - 1.0);
             float ry = (float)(_rng.NextDouble() * 2.0 - 1.0);
@@ -55,7 +53,7 @@ public class ObjectShaker : MonoBehaviour
             x = rx * _actualMagnitude * _actualDuration;
             y = ry * _actualMagnitude * _actualDuration;
 
-            _transform.localPosition += new Vector3(x, y, 0f);
+            _transform.anchoredPosition += new Vector2(x, y);
 
             yield return null;
 
@@ -66,6 +64,6 @@ public class ObjectShaker : MonoBehaviour
         _actualDuration = 0f;
         _actualMagnitude = 0f;
 
-        _transform.localPosition = _original;
+        _transform.anchoredPosition = _original;
     }
 }

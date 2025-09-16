@@ -8,4 +8,6 @@ public class Character : ScriptableObject
 
     [field: SerializeField] public Drink FavoriteDrink { get; private set; }
     [field: SerializeField] public string FavoriteLine { get; private set; }
+
+    [field: SerializeField][Range(0, 1)] public int Order { get; private set; } = 1;
 }

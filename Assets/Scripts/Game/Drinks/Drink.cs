@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -8,16 +9,32 @@ public class Drink : ScriptableObject
     [field: SerializeField] public Ingredient[] Recipe { get; private set; }
     [field: SerializeField] public Color Color { get; private set; } = Color.white;
     [field: SerializeField] public Sprite Sprite { get; private set; }
-    [field: SerializeField] private Character[] _likedBy;
+    [field: SerializeField] private List<Character> _likedBy;
     public Character Character { get; private set; }
+
+    public static List<Character> _used;
 
     public void ChooseCharacter()
     {
-        if (_likedBy == null)
-            _likedBy = Resources.LoadAll<Character>("");
+        _likedBy ??= Resources.LoadAll<Character>("").ToList();
+        _used ??= Resources.LoadAll<Character>("").ToList();
 
-        if (_likedBy.Length > 0)
-            Character = _likedBy[Random.Range(0, _likedBy.Length)];
+        _likedBy = _likedBy.OrderBy(b => _used.IndexOf(b)).ToList();
+
+        if (_likedBy.Count > 0)
+            Character = _likedBy[InverseCDF(_likedBy.Count-1)];
+
+        if (Character != null)
+        {
+            _used.Remove(Character);
+            _used.Add(Character);
+        }
+    }
+
+    public static int InverseCDF(int range)
+    {
+        float u = Random.Range(0f, 1f);
+        return Mathf.FloorToInt(range - range * Mathf.Sqrt(1 - u));
     }
 
 #if UNITY_EDITOR
