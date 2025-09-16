@@ -6688,6 +6688,8 @@ MonoBehaviour:
   _shakeStrength: 0.1
   _duration: 5
   _magnitude: 50
+  _animator: {fileID: 1606365449}
+  _blendInterval: 0.3
 --- !u!224 &1458768306 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8145324500225899773, guid: 79bdfdcffdb0bd04b89836469c1bf478, type: 3}

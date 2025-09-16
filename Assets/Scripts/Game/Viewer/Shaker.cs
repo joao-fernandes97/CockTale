@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shaker : MonoBehaviour
@@ -8,6 +9,9 @@ public class Shaker : MonoBehaviour
 
     [SerializeField] private float _duration = 0f;
     [SerializeField] private float _magnitude = 0f;
+
+    [SerializeField] private Animator _animator;
+    [SerializeField] private float _blendInterval = 0.1f;
 
     public void OnEnable()
     {
@@ -26,7 +30,57 @@ public class Shaker : MonoBehaviour
         foreach (ObjectShaker obj in _shakingObject)
             obj?.Shake(d, m);
 
+        Shake(d);
+
         SetShaker(_shake.localScale.x + newDif);
+    }
+
+    private Coroutine _shaking;
+    private float _timer;
+
+    public void Shake(float duration = 0f)
+    {
+        _timer = duration + _blendInterval;
+
+        _shaking ??= StartCoroutine(StartShaker());
+    }
+
+    private IEnumerator StartShaker()
+    {
+        float timer = _blendInterval/2;
+        float value;
+
+        do
+        {
+            value = Mathf.InverseLerp(_blendInterval, 0f, timer);
+            _animator.SetFloat("IdleShake", value);
+            yield return null;
+
+            timer -= Time.deltaTime;
+        }
+        while (timer > 0);
+        _animator.SetFloat("IdleShake", 1f);
+
+        do
+        {
+            yield return null;
+            _timer -= Time.deltaTime;
+        } while (_timer > 0);
+
+        timer = _blendInterval;
+        do
+        {
+            value = Mathf.InverseLerp(0f, _blendInterval, timer);
+            _animator.SetFloat("IdleShake", value);
+            yield return null;
+
+            timer -= Time.deltaTime;
+        }
+        while (timer > 0);
+
+        _animator.SetFloat("IdleShake", 0f);
+        _timer = 0f;
+        _shaking = null;
     }
 
     public void SetShaker(float newValue)
