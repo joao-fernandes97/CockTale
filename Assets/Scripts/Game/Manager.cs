@@ -8,12 +8,13 @@ public class Manager : MonoBehaviour
 {
     // debugs
     [SerializeField] private Image _debugIngredient;
-    [SerializeField] private TMP_Text _debugdrink;
 
+    [SerializeField] private DrinkView _drink;
     [SerializeField] private EndMenu _end;
     [SerializeField] private Timer _timer;
     [SerializeField] private Shaker _shaker;
     [SerializeField] private Clock _clock;
+    [SerializeField] private Particle _particles;
 
     [SerializeField] private float _ingredientInterval = 0.2f;
     [SerializeField] private float _ingredientFlashTme = 0.8f;
@@ -63,7 +64,7 @@ public class Manager : MonoBehaviour
     private IEnumerator GenerateDrink()
     {
         _clock.StopTime(true);
-        Debug.Log("Ahoo");
+        Debug.Log("Generating new drink. ");
 
         Drink drink;
         do
@@ -74,10 +75,11 @@ public class Manager : MonoBehaviour
         }
         while (drink == null);
 
-        _debugdrink.text = drink.name;
+        drink.ChooseCharacter();
+        _drink.SetUp(drink);
 
-        WaitForSecondsRealtime interval = new WaitForSecondsRealtime(_ingredientInterval);
-        WaitForSecondsRealtime flash = new WaitForSecondsRealtime(_ingredientFlashTme);
+        WaitForSecondsRealtime interval = new(_ingredientInterval);
+        WaitForSecondsRealtime flash = new(_ingredientFlashTme);
 
         // send signals to arduino to light up each ingredient
         foreach (Ingredient ingredient in drink.Recipe)
@@ -107,14 +109,15 @@ public class Manager : MonoBehaviour
         // get pour inputs
         if (_completedShaking && InputManager.Pouring())
         {
-            Debug.Log("Pouring. ");
+            // Debug.Log("Pouring. ");
             // needs 1 second of pouring to complete
             _pour += Time.deltaTime;
 
             // when finished pouring
             if (_pour > 0.5f)
             {
-                _end.ServeDrink(_currentDrink, _currentMix.ToArray());
+                bool won = _end.ServeDrink(_currentDrink, _currentMix.ToArray());
+                _drink.End(won);
                 OnEnable();
             }
             return;
@@ -143,9 +146,10 @@ public class Manager : MonoBehaviour
         // get ingredient inputs
         if (InputManager.PouringIngredient(out Ingredient ingredient))
         {
-            Debug.Log("Pouring Ingredient. ");
+            // Debug.Log("Pouring Ingredient. ");
             _currentMix.Enqueue(ingredient);
-            _shaker.Remap(_currentMix.Count, _currentMix.Count+1);
+            _shaker.Remap(_currentMix.Count, _currentMix.Count + 1);
+            _particles.EmitIngredient(ingredient);
         }
     }
 }

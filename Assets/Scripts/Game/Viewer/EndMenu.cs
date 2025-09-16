@@ -32,7 +32,7 @@ public class EndMenu : MonoBehaviour
         _shakeTime = 0f;
     }
 
-    public void ServeDrink(Drink drink, Ingredient[] mix)
+    public bool ServeDrink(Drink drink, Ingredient[] mix)
     {
         _drinksServed++;
         _totalShakeTime += _shakeTime;
@@ -49,12 +49,18 @@ public class EndMenu : MonoBehaviour
                 break;
         }
 
+        bool won = false;
+
         if (correct == drink.Recipe.Length && mix.Length == drink.Recipe.Length)
         {
             _correctDrinks++;
             _score += correct;
+
+            won = true;
         }
         _score += correct / 2;
+
+        return won;
     }
 
     public void Shake()

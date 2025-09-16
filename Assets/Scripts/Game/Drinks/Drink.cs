@@ -8,6 +8,17 @@ public class Drink : ScriptableObject
     [field: SerializeField] public Ingredient[] Recipe { get; private set; }
     [field: SerializeField] public Color Color { get; private set; } = Color.white;
     [field: SerializeField] public Sprite Sprite { get; private set; }
+    [field: SerializeField] private Character[] _likedBy;
+    public Character Character { get; private set; }
+
+    public void ChooseCharacter()
+    {
+        if (_likedBy == null)
+            _likedBy = Resources.LoadAll<Character>("");
+
+        if (_likedBy.Length > 0)
+            Character = _likedBy[Random.Range(0, _likedBy.Length)];
+    }
 
 #if UNITY_EDITOR
     private void OnValidate()

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daae44b1795674445baaa26cbb2c5249, type: 3}
+  m_Name: Danil
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  <Sprite>k__BackingField: {fileID: 21300000, guid: da0bdfb3d407e114bb0b5b43457bd146, type: 3}
+  <Line>k__BackingField: donelide
+  <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 7c698f84977fa044ca0c0adca7106f63, type: 2}
+  <FavoriteLine>k__BackingField: 

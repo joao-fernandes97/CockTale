@@ -13,10 +13,14 @@ public class ObjectShaker : MonoBehaviour
     private Vector3 _original;
 
     private Coroutine _shaking;
+    private System.Random _rng;
 
     private void Start()
     {
-        _original = _transform.position;
+        _original = _transform.localPosition;
+
+        int seed = unchecked(Environment.TickCount ^ GetInstanceID());
+        _rng = new System.Random(seed);
     }
 
     public void Shake(float duration = 0f, float magnitude = 0f)
@@ -26,7 +30,7 @@ public class ObjectShaker : MonoBehaviour
 
         if (duration != 0f)
             _actualDuration *= duration;
-        if (duration != 0f)
+        if (magnitude != 0f)
             _actualMagnitude *= magnitude;
 
         Debug.Log("Set actuals as dur: " + _actualDuration + " and mag: " + _actualMagnitude);
@@ -43,12 +47,15 @@ public class ObjectShaker : MonoBehaviour
 
         do
         {
-            _transform.position = _original;
+            _transform.localPosition = _original;
 
-            x = UnityEngine.Random.Range(-1f, 1f) * _actualMagnitude * _actualDuration;
-            y = UnityEngine.Random.Range(-1f, 1f) * _actualMagnitude * _actualDuration;
+            float rx = (float)(_rng.NextDouble() * 2.0 - 1.0);
+            float ry = (float)(_rng.NextDouble() * 2.0 - 1.0);
 
-            _transform.position += new Vector3(x, y, 0f);
+            x = rx * _actualMagnitude * _actualDuration;
+            y = ry * _actualMagnitude * _actualDuration;
+
+            _transform.localPosition += new Vector3(x, y, 0f);
 
             yield return null;
 
@@ -58,5 +65,7 @@ public class ObjectShaker : MonoBehaviour
 
         _actualDuration = 0f;
         _actualMagnitude = 0f;
+
+        _transform.localPosition = _original;
     }
 }
