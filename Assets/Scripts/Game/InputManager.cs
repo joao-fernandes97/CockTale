@@ -39,19 +39,21 @@ public class InputManager : MonoBehaviour
         _pour.AddBinding("<Keyboard>/x").WithInteraction("press");
 
         _pause = new InputAction(name: "_pause", type: InputActionType.Button);
-        _pause.AddBinding("<Keyboard>/m").WithInteraction("press");
+        _pause.AddBinding("<Keyboard>/escape").WithInteraction("press");
     }
 
     private void OnEnable()
     {
         if (_shake != null) _shake.Enable();
-        if (_pour  != null) _pour.Enable();
+        if (_pour != null) _pour.Enable();
+        if (_pause  != null) _pause.Enable();
     }
 
     private void OnDisable()
     {
         if (_shake != null) _shake.Disable();
-        if (_pour  != null) _pour.Disable();
+        if (_pour != null) _pour.Disable();
+        if (_pause != null) _pause.Disable();
     }
 
     public static bool Pause()
@@ -59,10 +61,7 @@ public class InputManager : MonoBehaviour
         if (_instance?._pause == null)
             return false;
 
-        if (_instance._pause.ReadValue<float>() > 0f)
-            return true;
-        // if not tilting
-        return false;
+        return _instance._pause.triggered;
     }
 
     private static float _previous = 0f;

@@ -13,8 +13,9 @@ public class Pause : Menu
 
     private void Update()
     {
-        if (  SceneManager.GetActiveScene().name != _mainMenu && InputManager.Pause() )
+        if (  InputManager.Pause() )
         {
+            // Debug.Log("Paused");
             if ( _pause.activeSelf )
                 Continue();
             else
@@ -40,11 +41,5 @@ public class Pause : Menu
         _pause.SetActive(false);
 
         // Debug.Log("unloading");
-    }
-
-    public void OnDestroy()
-    {
-        Debug.Log("Destroying pause");
-        Continue();        
     }
 }

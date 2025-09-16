@@ -11,6 +11,8 @@ public class Settings : MonoBehaviour
     [SerializeField] private TMP_Text _brightnessText;
     [SerializeField] private Slider _volume;
     [SerializeField] private TMP_Text _volumeText;
+
+    private Music _music;
     [SerializeField] private Slider _musicVolume;
     [SerializeField] private TMP_Text _musicVolumeText;
 
@@ -82,8 +84,12 @@ public class Settings : MonoBehaviour
     {
         float final = _maxVolume * (value - _musicVolume.minValue)
             / (_musicVolume.maxValue - _musicVolume.minValue);
-            
-        AudioListener.volume = final;
+
+        if (_music == null)
+            _music = FindFirstObjectByType<Music>();
+
+        if (_music != null)
+            _music.Volume = final;
         
         if (_musicVolumeText != null)
             _musicVolumeText.text = FormatShort(final);
