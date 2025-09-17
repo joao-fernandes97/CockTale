@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,10 +19,10 @@ public class InputManager : MonoBehaviour
         Key.Y, Key.U, Key.I, Key.O, Key.P
     };
 
-    private static InputManager _instance;
-
+    public static InputManager _instance;
     private static List<Ingredient> _ingredients;
     private static List<Drink> _drinks;
+    private Drink _currentDrink = null;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class InputManager : MonoBehaviour
     {
         if (_shake != null) _shake.Enable();
         if (_pour != null) _pour.Enable();
-        if (_pause  != null) _pause.Enable();
+        if (_pause != null) _pause.Enable();
     }
 
     private void OnDisable()
@@ -72,7 +73,7 @@ public class InputManager : MonoBehaviour
         float current = 0f;
         if (_instance?._shake != null)
             current = _instance._shake.ReadValue<float>();
-        
+
         bool flipped = (current > 0f && _previous <= 0f) || (current < 0f && _previous >= 0f);
 
         if (flipped && current != 0f)
@@ -97,7 +98,7 @@ public class InputManager : MonoBehaviour
         Keyboard keyboard = Keyboard.current;
         if (keyboard == null)
             return false;
-        
+
         // Map number keys to ingredient indices: 0..9
         for (int i = 0; i < _ingredients.Count && i < 10; i++)
         {
@@ -125,7 +126,26 @@ public class InputManager : MonoBehaviour
 
     public static Drink CurrentDrink()
     {
-        // somewhere in color map and custom inputs getting all ingredient colors using links, and mapping them from that
-        return _drinks[Random.Range(0, _drinks.Count)];
+        return _instance._currentDrink;
+    }
+
+    //sets the current drink back to null to force a reselection
+    public static void ResetDrink()
+    {
+        _instance._currentDrink = null;
+    }
+
+    //used by CustomMessageListener to set current drink based on received sensor messages
+    public void SetDrink(NamedColor color)
+    {
+        Debug.Log("SetDrink: " + color);
+        if (color == NamedColor.Grey)
+            _instance._currentDrink = null;
+        else
+        {
+            _instance._currentDrink = _drinks.FirstOrDefault(d => d.namedColor == color);
+        }
+
+
     }
 }

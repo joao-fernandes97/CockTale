@@ -8,6 +8,7 @@ public class Drink : ScriptableObject
 {
     [field: SerializeField] public Ingredient[] Recipe { get; private set; }
     [field: SerializeField] public Color Color { get; private set; } = Color.white;
+    [field: SerializeField] public NamedColor namedColor { get; private set; }
     [field: SerializeField] public Sprite Sprite { get; private set; }
     [field: SerializeField] private List<Character> _likedBy;
     public Character Character { get; private set; }

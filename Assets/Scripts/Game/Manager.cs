@@ -68,11 +68,12 @@ public class Manager : MonoBehaviour
     {
         _clock.StopTime(true);
         Debug.Log("Generating new drink. ");
-
+        InputManager.ResetDrink(); //forcibly reset drink back to null
         Drink drink;
         do
         {
             drink = InputManager.CurrentDrink();
+            Debug.Log(drink);
             yield return null;
             // Debug.Log("Ahoo drink: " + drink?.name);
         }
