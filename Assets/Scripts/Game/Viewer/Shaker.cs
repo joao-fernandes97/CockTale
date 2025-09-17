@@ -32,7 +32,7 @@ public class Shaker : MonoBehaviour
 
         Shake(d);
 
-        SetShaker(_shake.localScale.x + newDif);
+        SetShaker(_shake.localScale.y + newDif);
     }
 
     private Coroutine _shaking;
@@ -86,18 +86,18 @@ public class Shaker : MonoBehaviour
     public void SetShaker(float newValue)
     {
         Vector2 scale = _shake.localScale;
-        scale.x = newValue;
+        scale.y = newValue;
         _shake.localScale = scale;
     }
 
-    public float GetShaker() => _shake.localScale.x;
+    public float GetShaker() => _shake.localScale.y;
 
     public void Remap(int oldMax, int newMax)
     {
-        float newValue = _shake.localScale.x;
+        float newValue = _shake.localScale.y;
 
         if (newMax > 0)
-            newValue = _shake.localScale.x * oldMax / newMax;
+            newValue = _shake.localScale.y * oldMax / newMax;
 
         SetShaker(newValue);
     }

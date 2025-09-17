@@ -91,10 +91,12 @@ public class Manager : MonoBehaviour
 
             yield return interval;
             // turn on ingredient for arduino
-            _debugIngredient.color = ingredient.Color;
+            _debugIngredient.sprite = ingredient.Sprite;
+            _debugIngredient.color = Color.white;
 
             yield return flash;
             // turn off ingredient for arduino
+            _debugIngredient.sprite = null;
             _debugIngredient.color = Color.clear;
         }
 
