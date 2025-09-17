@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ecf01c28d5e5094cb9db22d1c6c324e, type: 2}
   - {fileID: 11400000, guid: 56f009551a76cf44498c6cfedc0ed11b, type: 2}
   <Color>k__BackingField: {r: 1, g: 0.4952801, b: 0, a: 1}
+  <namedColor>k__BackingField: 5
   <Sprite>k__BackingField: {fileID: 0}
   _likedBy:
   - {fileID: 11400000, guid: 3355557750aea444ba2dd881935df038, type: 2}

@@ -19,6 +19,12 @@ public class CustomMessageListener : MonoBehaviour
     private bool[] tiltStates = new bool[16];
     private float[] tiltDownTime = new float[16];
 
+    private NamedColor _lastColor;
+    private float _lastColorChangeTime;
+    private const float _timeToLockIn = 2f;
+    private NamedColor _currentStableColor;
+
+
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
     {
@@ -29,8 +35,8 @@ public class CustomMessageListener : MonoBehaviour
     {
         if (line.StartsWith("C:")) // Example: "C:255,128,0"
         {
-            //Debug.Log("Color");
-            //ParseColor(line.Substring(2));
+            //Debug.Log(line);
+            ParseColor(line.Substring(2));
         }
         else if (line.StartsWith("T")) // Example: "T0:1"
         {
@@ -49,7 +55,20 @@ public class CustomMessageListener : MonoBehaviour
         {
             Color color = new Color32(r, g, b, 255);
             NamedColor named = ColorMap.MapToNearestColor(color);
-            Debug.Log($"Received color {color}, mapped to {named}");
+
+            if (named != _lastColor)
+            {
+                _lastColor = named;
+                _lastColorChangeTime = Time.unscaledTime;
+            }
+
+            if (Time.unscaledTime - _lastColorChangeTime >= _timeToLockIn && named != _currentStableColor)
+            {
+                _currentStableColor = named;
+                InputManager._instance.SetDrink(_currentStableColor);
+                Debug.Log(_currentStableColor);
+            }
+            //Debug.Log($"Received color {color}, mapped to {named}");
         }
     }
 
@@ -61,8 +80,8 @@ public class CustomMessageListener : MonoBehaviour
             int.TryParse(parts[0], out int index) &&
             int.TryParse(parts[1], out int state))
         {
-            //the number received when its up is 1023 and when down is around the 80 mark
-            bool isDown = state <= 500;
+            //0 when sensor pointing up
+            bool isDown = state == 1;
             if (tiltStates[index] != isDown)
             {
                 tiltStates[index] = isDown;
