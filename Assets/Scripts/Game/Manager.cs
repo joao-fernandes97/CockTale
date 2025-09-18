@@ -113,7 +113,8 @@ public class Manager : MonoBehaviour
         if (_currentDrink == null) return;
 
         // get pour inputs
-        if (_completedShaking && InputManager._instance.usingSensors ? InputManager.SensorPouring() : InputManager.Pouring())
+        if (_completedShaking && InputManager._instance.usingSensors ? InputManager.SensorPouring() 
+                                                                     : InputManager.Pouring())
         {
             // Debug.Log("Pouring. ");
             // needs 1 second of pouring to complete
@@ -132,7 +133,9 @@ public class Manager : MonoBehaviour
             _pour = 0f;
 
         // get shake inputs
-        if (_currentMix.Count > 0 && InputManager.SensorShaking(out float dif))
+        float dif;
+        if (_currentMix.Count > 0 && InputManager._instance.usingSensors ? InputManager.SensorShaking(out dif)
+                                                                         : InputManager.Shaking(out dif))
         {
             // Debug.Log("Shaking. ");
             // shaking meter
@@ -152,7 +155,7 @@ public class Manager : MonoBehaviour
         // get ingredient inputs
         Ingredient ingredient;
         if (InputManager._instance.usingSensors ? InputManager.CupTilted(out ingredient)
-                                        :InputManager.PouringIngredient(out ingredient))
+                                                : InputManager.PouringIngredient(out ingredient))
             {
                 // Debug.Log("Pouring Ingredient. ");
                 _currentMix.Enqueue(ingredient);
