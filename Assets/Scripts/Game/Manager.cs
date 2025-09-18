@@ -110,32 +110,41 @@ public class Manager : MonoBehaviour
 
     private void MixDrink()
     {
-        if (_currentDrink == null) return;
-
-        // get pour inputs
-        if (_completedShaking && InputManager._instance.usingSensors ? InputManager.SensorPouring() 
-                                                                     : InputManager.Pouring())
+        if (_currentDrink == null)
         {
-            // Debug.Log("Pouring. ");
-            // needs 1 second of pouring to complete
-            _pour += Time.deltaTime;
-
-            // when finished pouring
-            if (_pour > _pourTime)
+            if (_pour > 0f)
             {
-                bool won = _end.ServeDrink(_currentDrink, _currentMix.ToArray());
-                _drink.End(won);
-                OnEnable();
+                _pour -= Time.unscaledDeltaTime * 2;
+                _pour = Mathf.Clamp(_pour, 0f, _pourTime);
+                _shaker.Pour(_pour, _pourTime*2);
             }
-
-            _pour = Mathf.Clamp(_pour, 0f, _pourTime);
-            _shaker.Pour(_pour, _pourTime);
             return;
         }
-        else
-        {
-            _pour -= Time.deltaTime *2;
-        }
+
+        // get pour inputs
+            if (_completedShaking && InputManager._instance.usingSensors ? InputManager.SensorPouring()
+                                                                         : InputManager.Pouring())
+            {
+                // Debug.Log("Pouring. ");
+                // needs 1 second of pouring to complete
+                _pour += Time.deltaTime;
+
+                // when finished pouring
+                if (_pour > _pourTime)
+                {
+                    bool won = _end.ServeDrink(_currentDrink, _currentMix.ToArray());
+                    _drink.End(won);
+                    OnEnable();
+                }
+
+                _pour = Mathf.Clamp(_pour, 0f, _pourTime);
+                _shaker.Pour(_pour, _pourTime);
+                return;
+            }
+            else
+            {
+                _pour -= Time.deltaTime * 2;
+            }
 
         _pour = Mathf.Clamp(_pour, 0f, _pourTime);
         _shaker.Pour(_pour, _pourTime);

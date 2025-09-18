@@ -4,13 +4,14 @@ public class ParticleCollision : MonoBehaviour
 {
     [SerializeField] private Particle _particle;
     [SerializeField] private Manager _manager;
+    [SerializeField] private ParticleSystem _splash;
     private ParticleSystem.MainModule _main;
 
     private void OnParticleCollision(GameObject other)
     {
-        ParticleSystem ps = other.GetComponentInChildren<ParticleSystem>();
+        ParticleSystem ps = other.GetComponentInChildren<ParticleSystem>(true);
 
-        if (ps != null && ps != _particle.System)
+        if (ps != null && ps == _splash)
         {
             _main = ps.main;
             _main.startColor = GetColor();

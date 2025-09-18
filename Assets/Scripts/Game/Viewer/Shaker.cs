@@ -13,6 +13,8 @@ public class Shaker : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _blendInterval = 0.1f;
 
+    [SerializeField] private ParticleSystem _drink;
+
     public void OnEnable()
     {
         SetShaker(0f);
