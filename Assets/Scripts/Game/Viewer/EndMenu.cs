@@ -47,7 +47,7 @@ public class EndMenu : MonoBehaviour
         foreach (Ingredient m in drink.Recipe)
             debug += " " + m.name;
 
-        debug = "\nproduced mix: ";
+        debug += "\nproduced mix: ";
 
         foreach (Ingredient m in mix)
             debug += " " + m.name;
@@ -56,16 +56,20 @@ public class EndMenu : MonoBehaviour
 
         for (int i = 0; i < mix.Length; i++)
         {
-            if (drink.Recipe.Length > i) break;
+            if (i > drink.Recipe.Length) break;
 
+            Debug.Log("Mix" + i + ": " + mix[i] + " /recipe" + i + ": " + drink.Recipe[i]);
             if (mix[i] == drink.Recipe[i])
                 correct++;
             else
                 break;
         }
+        Debug.Log("Correct Ingredients" + correct);
 
         bool won = false;
 
+        Debug.Log("recipe length:" + drink.Recipe.Length);
+        Debug.Log("Mix length" + mix.Length);
         if (correct == drink.Recipe.Length && mix.Length == drink.Recipe.Length)
         {
             _correctDrinks++;
