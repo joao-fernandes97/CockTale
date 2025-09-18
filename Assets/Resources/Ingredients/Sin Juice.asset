@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
   <Type>k__BackingField: 0
   <Color>k__BackingField: {r: 0.070608735, g: 1, b: 0, a: 1}
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 77ab25f4c18dea143ae4afb9afb05038, type: 3}
-  <ParticleSprite>k__BackingField: {fileID: 21300000, guid: d5f7231186051cc4a8f308546fc95f27, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: d5f7231186051cc4a8f308546fc95f27, type: 3}
+  <ParticleSprite>k__BackingField: {fileID: 21300000, guid: 7cedcd54ddeaa2748b681e63456e6879, type: 3}
