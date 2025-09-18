@@ -23,7 +23,22 @@ public class Drink : ScriptableObject
         _likedBy = _likedBy.OrderBy(b => _used.IndexOf(b)).ToList();
 
         if (_likedBy.Count > 0)
-            Character = _likedBy[InverseCDF(_likedBy.Count-1)];
+            Character = _likedBy[InverseCDF(_likedBy.Count)];
+
+        // just for debug
+        /*for (int i = 0; i < 12; i++)
+        {
+            _likedBy = _likedBy.OrderBy(b => _used.IndexOf(b)).ToList();
+
+            int index = InverseCDF(_likedBy.Count);
+
+            Character = _likedBy[index];
+
+            Debug.Log("Chose character: " + Character.name + "   index: " + index + "   last: " + _used.ElementAt(_used.Count - 1) + "   first: " + _used.ElementAt(0));
+            
+            _used.Remove(Character);
+            _used.Add(Character);
+        }*/
 
         if (Character != null)
         {
