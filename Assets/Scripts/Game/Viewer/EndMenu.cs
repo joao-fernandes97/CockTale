@@ -42,6 +42,18 @@ public class EndMenu : MonoBehaviour
         _shakeTime = 0f;
         int correct = 0;
 
+        string debug = "recipe: ";
+
+        foreach (Ingredient m in drink.Recipe)
+            debug += " " + m.name;
+
+        debug = "\nproduced mix: ";
+
+        foreach (Ingredient m in mix)
+            debug += " " + m.name;
+
+        Debug.Log(debug);
+
         for (int i = 0; i < mix.Length; i++)
         {
             if (drink.Recipe.Length > i) break;
