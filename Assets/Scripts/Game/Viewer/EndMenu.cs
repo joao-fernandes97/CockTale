@@ -15,11 +15,13 @@ public class EndMenu : MonoBehaviour
     [SerializeField] private TMP_Text _kdTMP;
     [SerializeField] private TMP_Text _totalShakingTMP;
     [SerializeField] private TMP_Text _averageShakingTMP;
+    [SerializeField] private TMP_Text _bonusPointsTMP;
 
     private int _drinksServed;
     private float _totalShakeTime;
     private int _correctDrinks;
     private int _score;
+    private int _bonus;
 
     private float _shakeTime;
 
@@ -30,6 +32,7 @@ public class EndMenu : MonoBehaviour
         _totalShakeTime = 0f;
         _score = 0;
         _shakeTime = 0f;
+        _bonus = 0;
     }
 
     public bool ServeDrink(Drink drink, Ingredient[] mix)
@@ -58,7 +61,13 @@ public class EndMenu : MonoBehaviour
 
             won = true;
         }
-        _score += correct / 2;
+        _score += correct / 3;
+
+        if (drink.Character.FavoriteDrink == drink)
+        {
+            _bonus += 1;
+            _score *= 2;
+        }
 
         return won;
     }
@@ -70,12 +79,13 @@ public class EndMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        _scoreTMP.text = _score.ToString();
-        _correctServedTMP.text = _correctDrinks.ToString();
-        _totalServedTMP.text = _drinksServed.ToString();
-        _kdTMP.text = (_drinksServed / (_correctDrinks +1)).ToString();
-        _totalShakingTMP.text = _totalShakeTime.ToString();
-        _averageShakingTMP.text = (_totalShakeTime / _drinksServed +1).ToString();
+        _scoreTMP.text = "Final Score: " + _score.ToString();
+        _correctServedTMP.text = "Correct Drinks Served: " + _correctDrinks.ToString();
+        _totalServedTMP.text = "Total Drinks Served: " + _drinksServed.ToString();
+        _kdTMP.text = "Served K/D: " + (_drinksServed / (_correctDrinks +1)).ToString();
+        _totalShakingTMP.text = "Total Shaking Time: " + _totalShakeTime.ToString();
+        _averageShakingTMP.text = "Average Shaking Time: " + (_totalShakeTime / _drinksServed +1).ToString();
+        _bonusPointsTMP.text = "Bonus Times: " + _bonus.ToString();
 
         _clock.StopTime(true);
     }
