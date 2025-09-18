@@ -82,9 +82,9 @@ public class EndMenu : MonoBehaviour
         _scoreTMP.text = "Final Score: " + _score.ToString();
         _correctServedTMP.text = "Correct Drinks Served: " + _correctDrinks.ToString();
         _totalServedTMP.text = "Total Drinks Served: " + _drinksServed.ToString();
-        _kdTMP.text = "Served K/D: " + (_drinksServed / (_correctDrinks +1)).ToString();
+        _kdTMP.text = "Served K/D: " + (_drinksServed / (_correctDrinks +0.01f)).ToString();
         _totalShakingTMP.text = "Total Shaking Time: " + _totalShakeTime.ToString();
-        _averageShakingTMP.text = "Average Shaking Time: " + (_totalShakeTime / _drinksServed +1).ToString();
+        _averageShakingTMP.text = "Average Shaking Time: " + (_drinksServed / _totalShakeTime +0.01f).ToString();
         _bonusPointsTMP.text = "Bonus Times: " + _bonus.ToString();
 
         _clock.StopTime(true);

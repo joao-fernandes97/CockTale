@@ -32,7 +32,7 @@ public class Manager : MonoBehaviour
     {
         _end.gameObject.SetActive(false);
     }
-    
+
     public void OnEnable()
     {
         _shaker.OnEnable();
@@ -40,6 +40,8 @@ public class Manager : MonoBehaviour
         _currentDrink = null;
         _currentMix = new();
         _completedShaking = false;
+
+        Debug.Log("New Drink comp. ");
     }
 
     private void LateUpdate()
@@ -122,8 +124,8 @@ public class Manager : MonoBehaviour
         }
 
         // get pour inputs
-            if (_completedShaking && InputManager._instance.usingSensors ? InputManager.SensorPouring()
-                                                                         : InputManager.Pouring())
+            if (_completedShaking
+                && (InputManager._instance.usingSensors ? InputManager.SensorPouring() : InputManager.Pouring()))
             {
                 // Debug.Log("Pouring. ");
                 // needs 1 second of pouring to complete
@@ -150,8 +152,8 @@ public class Manager : MonoBehaviour
         _shaker.Pour(_pour, _pourTime);
 
         // get shake inputs
-        if (_currentMix.Count > 0 && InputManager._instance.usingSensors ? InputManager.SensorShaking(out float dif)
-                                                                         : InputManager.Shaking(out dif))
+        if (_currentMix.Count > 0
+            && (InputManager._instance.usingSensors ? InputManager.SensorShaking(out float dif) : InputManager.Shaking(out dif)))
         {
             // Debug.Log("Shaking. ");
             // shaking meter
@@ -164,19 +166,19 @@ public class Manager : MonoBehaviour
             {
                 _shaker.SetShaker(1f);
                 _completedShaking = true;
+                Debug.Log("Completed Shake. ");
             }
             return;
         }
 
         // get ingredient inputs
-        Ingredient ingredient;
-        if (InputManager._instance.usingSensors ? InputManager.CupTilted(out ingredient)
+        if (InputManager._instance.usingSensors ? InputManager.CupTilted(out Ingredient ingredient)
                                                 : InputManager.PouringIngredient(out ingredient))
-            {
-                // Debug.Log("Pouring Ingredient. ");
-                _currentMix.Enqueue(ingredient);
-                _shaker.Remap(_currentMix.Count, _currentMix.Count + 1);
-                _particles.EmitIngredient(ingredient);
-            }
+        {
+            // Debug.Log("Pouring Ingredient. ");
+            _currentMix.Enqueue(ingredient);
+            _shaker.Remap(_currentMix.Count, _currentMix.Count + 1);
+            _particles.EmitIngredient(ingredient);
+        }
     }
 }

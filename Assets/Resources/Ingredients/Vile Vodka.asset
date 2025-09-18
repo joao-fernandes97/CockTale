@@ -15,4 +15,4 @@ MonoBehaviour:
   <Type>k__BackingField: 0
   <Color>k__BackingField: {r: 0.6055535, g: 0.6055535, b: 0.6055535, a: 1}
   <Sprite>k__BackingField: {fileID: 21300000, guid: 49f7e38de076fab40a6533edf6d16a82, type: 3}
-  <ParticleSprite>k__BackingField: {fileID: 21300000, guid: 7cedcd54ddeaa2748b681e63456e6879, type: 3}
+  <ParticleSprite>k__BackingField: {fileID: 0}
