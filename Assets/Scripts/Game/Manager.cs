@@ -174,11 +174,11 @@ public class Manager : MonoBehaviour
         // get ingredient inputs
         if (InputManager._instance.usingSensors ? InputManager.CupTilted(out Ingredient ingredient)
                                                 : InputManager.PouringIngredient(out ingredient))
-        {
-            // Debug.Log("Pouring Ingredient. ");
-            _currentMix.Enqueue(ingredient);
-            _shaker.Remap(_currentMix.Count, _currentMix.Count + 1);
-            _particles.EmitIngredient(ingredient);
-        }
+            {
+                Debug.Log("Pouring Ingredient: "+ ingredient.name);
+                _currentMix.Enqueue(ingredient);
+                _shaker.Remap(_currentMix.Count, _currentMix.Count + 1);
+                _particles.EmitIngredient(ingredient);
+            }
     }
 }

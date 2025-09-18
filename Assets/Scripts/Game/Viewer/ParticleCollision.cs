@@ -38,7 +38,7 @@ public class ParticleCollision : MonoBehaviour
         
         color /= _manager.Mix.Length;
 
-        Debug.Log("Color: " + color);
+        //Debug.Log("Color: " + color);
 
         Color = color;
 

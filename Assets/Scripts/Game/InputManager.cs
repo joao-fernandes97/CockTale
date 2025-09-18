@@ -194,7 +194,6 @@ public class InputManager : MonoBehaviour
 
     public static Drink CurrentDrink()
     {
-        Debug.Log("CurrentDrink usingSensors=" + _instance.usingSensors);
         return _instance.usingSensors ? _instance._currentDrink : _drinks[Random.Range(0, _drinks.Count)];
     }
 
