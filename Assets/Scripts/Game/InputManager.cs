@@ -20,11 +20,14 @@ public class InputManager : MonoBehaviour
     };
 
     public static InputManager _instance;
+    public bool usingSensors;
     private static List<Ingredient> _ingredients;
     private static List<Drink> _drinks;
     private Drink _currentDrink = null;
     private int _cupPourIndex = -1;
     private static int _lastCupIndex = -1;
+    private int _shakerValue = 0;
+    private bool _pourShaker = false;
 
     private void Awake()
     {
@@ -87,6 +90,31 @@ public class InputManager : MonoBehaviour
 
         _previous = current;
         return false;
+    }
+
+    private static int _previousShakerValue = 0;
+    public static bool SensorShaking(out float dif)
+    {
+        dif = 0f;
+
+        int current = _instance._shakerValue;
+
+        bool changed = current != _previousShakerValue;
+
+        if (changed)
+        {
+            dif = Mathf.Abs(current) + Mathf.Abs(_previousShakerValue);
+            _previousShakerValue = current;
+            return true;
+        }
+
+        _previousShakerValue = current;
+        return false;
+    }
+
+    public void SetShakerValue(int val)
+    {
+        _instance._shakerValue = val;
     }
 
 
@@ -154,10 +182,20 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
+    public static bool SensorPouring()
+    {
+        return _instance._pourShaker;
+    }
+
+    public void SetPourShaker(bool b)
+    {
+        _instance._pourShaker = b;
+    }
+
     public static Drink CurrentDrink()
     {
-        return _drinks[Random.Range(0, _drinks.Count)]; //deactivate when using sensors
-        //return _instance._currentDrink; activate when using sensors
+        Debug.Log("CurrentDrink usingSensors=" + _instance.usingSensors);
+        return _instance.usingSensors ? _instance._currentDrink : _drinks[Random.Range(0, _drinks.Count)];
     }
 
     //sets the current drink back to null to force a reselection
@@ -176,7 +214,5 @@ public class InputManager : MonoBehaviour
         {
             _instance._currentDrink = _drinks.FirstOrDefault(d => d.namedColor == color);
         }
-
-
     }
 }

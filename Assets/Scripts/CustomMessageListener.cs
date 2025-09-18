@@ -24,6 +24,9 @@ public class CustomMessageListener : MonoBehaviour
     private const float _timeToLockIn = 2f;
     private NamedColor _currentStableColor;
 
+    private float _shakerPouringTime;
+    private bool _shakerPouring;
+
 
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
@@ -42,6 +45,10 @@ public class CustomMessageListener : MonoBehaviour
         {
             //Debug.Log(line);
             ParseTilt(line);
+        }
+        else if (line.StartsWith("S")) //Example: "S:0"
+        {
+            ParseShaker(line);
         }
     }
 
@@ -87,14 +94,55 @@ public class CustomMessageListener : MonoBehaviour
                 tiltStates[index] = isDown;
 
                 if (isDown)
-                    tiltDownTime[index] = Time.time; // record press start
+                    InputManager._instance.SetCupIndex(index);
                 else
                 {
-                    float heldDuration = Time.time - tiltDownTime[index];
-                    Debug.Log($"Tilt switch {index} held for {heldDuration:F2} seconds");
-                    tiltDownTime[index] = 0;
+                    if (InputManager._instance.GetCupIndex() == index)
+                    {
+                        int activeIndex = -1;
+                        for (int i = 0; i < tiltStates.Length; i++)
+                        {
+                            if (tiltStates[i])
+                            {
+                                activeIndex = i;
+                                break;
+                            }
+                        }
+                        InputManager._instance.SetCupIndex(activeIndex);
+                    }
                 }
             }
+        }
+    }
+
+    private void ParseShaker(string line)
+    {
+        int.TryParse(line.Split(':')[1], out int state);
+        //Debug.Log(state);
+        InputManager._instance.SetShakerValue(state);
+
+        if (state == 1)
+        {
+            if (!_shakerPouring)
+            {
+                _shakerPouring = true;
+                _shakerPouringTime = Time.unscaledTime;
+            }
+
+            float pourDuration = Time.unscaledTime - _shakerPouringTime;
+            if (pourDuration >= _timeToLockIn)
+            {
+                InputManager._instance.SetPourShaker(true);
+            }
+        }
+        else
+        {
+            if (_shakerPouring)
+            {
+                _shakerPouring = false;
+                _shakerPouringTime = 0f;
+            }
+            InputManager._instance.SetPourShaker(false);
         }
     }
 
@@ -106,6 +154,9 @@ public class CustomMessageListener : MonoBehaviour
         if (success)
             Debug.Log("Connection established");
         else
-            Debug.Log("Connection attempt failed or disconnection detected");
+        {
+            //Debug.Log("Connection attempt failed or disconnection detected");
+        }
+        InputManager._instance.usingSensors = success;
     }
 }
