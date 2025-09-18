@@ -46,7 +46,7 @@ MonoBehaviour:
   extrusionMethod: 5
   scaling: 1
   width: 100
-  minWidth: 5
+  minWidth: 4
   scaleWithResolution: 0
   referenceResolution: 0
   customResolution: 0

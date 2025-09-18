@@ -31,7 +31,7 @@ public class Particle : MonoBehaviour
         // System.gameObject.SetActive(true);
         System.Play();
 
-        _main.startColor = ingredient.Color;
+        //_main.startColor = ingredient.Color;
         Material mat = _renderer.material; ;
 
         // URP uses _BaseMap, and built in uses _MainTex

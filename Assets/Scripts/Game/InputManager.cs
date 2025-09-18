@@ -23,6 +23,8 @@ public class InputManager : MonoBehaviour
     private static List<Ingredient> _ingredients;
     private static List<Drink> _drinks;
     private Drink _currentDrink = null;
+    private int _cupPourIndex = -1;
+    private static int _lastCupIndex = -1;
 
     private void Awake()
     {
@@ -90,6 +92,7 @@ public class InputManager : MonoBehaviour
 
     /// <summary>
     /// you can access each ingredient's color in their scriptable objects
+    /// replaced by CupTilted when using sensors
     /// </summary>
     public static bool PouringIngredient(out Ingredient ingredient)
     {
@@ -113,6 +116,33 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
+    //Used when sensors are involved, previous method 
+    public static bool CupTilted(out Ingredient ingredient)
+    {
+        ingredient = null;
+
+        if (_instance._cupPourIndex != -1 && _lastCupIndex == -1)
+        {
+            _lastCupIndex = _instance._cupPourIndex;
+            Debug.Log("TiltCupIndex: " + _instance._cupPourIndex);
+            ingredient = _ingredients[_instance._cupPourIndex];
+            return true;
+        }
+
+        _lastCupIndex = _instance._cupPourIndex;
+        return false;
+    }
+
+    //set by message listener based on sensor readings
+    public void SetCupIndex(int i)
+    {
+        _instance._cupPourIndex = i;
+    }
+    public int GetCupIndex()
+    {
+        return _instance._cupPourIndex;
+    }
+
     public static bool Pouring()
     {
         if (_instance?._pour == null)
@@ -126,7 +156,8 @@ public class InputManager : MonoBehaviour
 
     public static Drink CurrentDrink()
     {
-        return _instance._currentDrink;
+        return _drinks[Random.Range(0, _drinks.Count)]; //deactivate when using sensors
+        //return _instance._currentDrink; activate when using sensors
     }
 
     //sets the current drink back to null to force a reselection
