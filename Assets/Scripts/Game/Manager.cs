@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Shaker _shaker;
     [SerializeField] private Clock _clock;
     [SerializeField] private Particle _particles;
+    [SerializeField] private float _pourTime = 1f;
 
     [SerializeField] private float _ingredientInterval = 0.2f;
     [SerializeField] private float _ingredientFlashTme = 0.8f;
@@ -120,15 +121,15 @@ public class Manager : MonoBehaviour
             _pour += Time.deltaTime;
 
             // when finished pouring
-            if (_pour > 2f)
+            if (_pour > _pourTime)
             {
                 bool won = _end.ServeDrink(_currentDrink, _currentMix.ToArray());
                 _drink.End(won);
                 OnEnable();
             }
 
-            _pour = Mathf.Clamp(_pour, 0f, 1f);
-            _shaker.Pour(_pour, 1f);
+            _pour = Mathf.Clamp(_pour, 0f, _pourTime);
+            _shaker.Pour(_pour, _pourTime);
             return;
         }
         else
@@ -136,8 +137,8 @@ public class Manager : MonoBehaviour
             _pour -= Time.deltaTime *2;
         }
 
-        _pour = Mathf.Clamp(_pour, 0f, 1f);
-        _shaker.Pour(_pour, 2f);
+        _pour = Mathf.Clamp(_pour, 0f, _pourTime);
+        _shaker.Pour(_pour, _pourTime);
 
         // get shake inputs
         if (_currentMix.Count > 0 && InputManager._instance.usingSensors ? InputManager.SensorShaking(out float dif)
