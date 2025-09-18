@@ -92,6 +92,14 @@ public class Shaker : MonoBehaviour
 
     public float GetShaker() => _shake.localScale.y;
 
+    public void Pour(float pour, float max)
+    {
+        max /= 3;
+        float value = Mathf.InverseLerp(0f, max, pour);
+        _animator.SetFloat("Pour", value);
+        // Debug.Log("Setting animator pour float: " + value); 
+    }
+
     public void Remap(int oldMax, int newMax)
     {
         float newValue = _shake.localScale.y;
