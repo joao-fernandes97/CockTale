@@ -24,3 +24,5 @@ MonoBehaviour:
   _likedBy:
   - {fileID: 11400000, guid: 1c4277f2014ff264e9fd555cc42d88f9, type: 2}
   - {fileID: 11400000, guid: f06cb481f0a8b7244a4123350a4a2ed3, type: 2}
+  - {fileID: 11400000, guid: ba887cc5f7bc15b478ac59267644a0dc, type: 2}
+  - {fileID: 11400000, guid: 3355557750aea444ba2dd881935df038, type: 2}
