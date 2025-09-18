@@ -36,9 +36,9 @@ public class Particle : MonoBehaviour
 
         // URP uses _BaseMap, and built in uses _MainTex
         if (mat.HasProperty("_BaseMap"))
-            mat.SetTexture("_BaseMap", ingredient.Sprite.texture);
+            mat.SetTexture("_BaseMap", ingredient.ParticleSprite.texture);
         else
-            mat.mainTexture = ingredient.Sprite.texture;
+            mat.mainTexture = ingredient.ParticleSprite.texture;
 
         StartCoroutine(Emit());
 

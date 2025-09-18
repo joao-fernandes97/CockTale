@@ -6,6 +6,7 @@ public class Ingredient : ScriptableObject
     [field: SerializeField] public IngredientType Type { get; private set; }
     [field: SerializeField] public Color Color { get; private set; } = Color.white;
     [field: SerializeField] public Sprite Sprite { get; private set; }
+    [field: SerializeField] public Sprite ParticleSprite { get; private set; }
 
 #if UNITY_EDITOR
     private void OnValidate()
