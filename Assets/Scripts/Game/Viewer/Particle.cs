@@ -6,14 +6,11 @@ public class Particle : MonoBehaviour
     private static WaitForSeconds _waitForSeconds0_5 = new WaitForSeconds(0.5f);
     [field:SerializeField] public ParticleSystem System { get; private set; }
 
-    private ParticleSystem.MainModule _main;
     private ParticleSystemRenderer _renderer;
 
     private void Awake()
     {
         _renderer = System.GetComponent<ParticleSystemRenderer>();
-        _main = System.main;
-        _main.stopAction = ParticleSystemStopAction.None;
     }
 
     private void Start()

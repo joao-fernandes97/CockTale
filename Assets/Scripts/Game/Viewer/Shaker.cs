@@ -14,7 +14,14 @@ public class Shaker : MonoBehaviour
     [SerializeField] private float _blendInterval = 0.1f;
 
     [SerializeField] private ParticleSystem _drink;
+    private ParticleSystem.TrailModule _trail;
 
+    private void Start()
+    {
+        _drink.gameObject.SetActive(true);
+        _trail = _drink.trails;
+        _drink.Stop();
+    }
     public void OnEnable()
     {
         SetShaker(0f);
@@ -100,6 +107,16 @@ public class Shaker : MonoBehaviour
         float value = Mathf.InverseLerp(0f, max, pour);
         _animator.SetFloat("Pour", value);
         // Debug.Log("Setting animator pour float: " + value); 
+
+        if (pour > max)
+        {
+            _trail.colorOverLifetime = ParticleCollision.Color;
+            _drink.Play();
+        }
+        else
+        {
+            _drink.Stop();
+        }
     }
 
     public void Remap(int oldMax, int newMax)

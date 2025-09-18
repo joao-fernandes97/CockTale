@@ -6,6 +6,12 @@ public class ParticleCollision : MonoBehaviour
     [SerializeField] private Manager _manager;
     [SerializeField] private ParticleSystem _splash;
     private ParticleSystem.MainModule _main;
+    public static Color Color { get; private set; }
+
+    private void Start()
+    {
+        _splash.gameObject.SetActive(true);
+    }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -33,6 +39,8 @@ public class ParticleCollision : MonoBehaviour
         color /= _manager.Mix.Length;
 
         Debug.Log("Color: " + color);
+
+        Color = color;
 
         return color;
     }
