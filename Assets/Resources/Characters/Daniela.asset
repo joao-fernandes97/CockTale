@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daae44b1795674445baaa26cbb2c5249, type: 3}
-  m_Name: Danil
+  m_Name: Daniela
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: da0bdfb3d407e114bb0b5b43457bd146, type: 3}
   <Line>k__BackingField: Hmmmm.... UhmmmAaaahhh uhmmm.... Bondgia,yo want uuuh...!

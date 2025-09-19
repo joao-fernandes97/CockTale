@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daae44b1795674445baaa26cbb2c5249, type: 3}
-  m_Name: Leandro
+  m_Name: Leonardo
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: 86d0c3800e70e4249ae34c2e270f6fe2, type: 3}
-  <Line>k__BackingField: Primark.
+  <Line>k__BackingField: What u mean no beer?!
   <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 6f03311f3845e1640b5f8d6497ab56c3, type: 2}
-  <FavoriteLine>k__BackingField: Primark beer!
+  <FavoriteLine>k__BackingField: Type shi
   <Order>k__BackingField: 1
