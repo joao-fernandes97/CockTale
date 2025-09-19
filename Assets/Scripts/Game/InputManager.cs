@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
     private static List<Drink> _drinks;
     private Drink _currentDrink = null;
     private int _cupPourIndex = -1;
+    private int _lastIngredientIndex = -1;
     private static int _lastCupIndex = -1;
     private int _shakerValue = 0;
     private bool _pourShaker = false;
@@ -149,9 +150,12 @@ public class InputManager : MonoBehaviour
     {
         ingredient = null;
 
-        if (_instance._cupPourIndex != -1 && _lastCupIndex == -1)
+        if (_instance._cupPourIndex != -1
+            && _lastCupIndex == -1
+            && _instance._lastIngredientIndex != _instance._cupPourIndex)
         {
             _lastCupIndex = _instance._cupPourIndex;
+            _instance._lastIngredientIndex = _instance._cupPourIndex;
             Debug.Log("TiltCupIndex: " + _instance._cupPourIndex);
             ingredient = _ingredients[_instance._cupPourIndex];
             return true;
@@ -165,6 +169,7 @@ public class InputManager : MonoBehaviour
     public void SetCupIndex(int i)
     {
         _instance._cupPourIndex = i;
+        Debug.Log("SetCupIndex: " + i);
     }
     public int GetCupIndex()
     {
