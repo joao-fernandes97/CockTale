@@ -94,7 +94,7 @@ public class CustomMessageListener : MonoBehaviour
                 tiltStates[index] = isDown;
 
                 if (isDown)
-                    InputManager._instance.SetCupIndex(index);
+                    tiltDownTime[index] = Time.unscaledTime;
                 else
                 {
                     if (InputManager._instance.GetCupIndex() == index)
@@ -110,6 +110,14 @@ public class CustomMessageListener : MonoBehaviour
                         }
                         InputManager._instance.SetCupIndex(activeIndex);
                     }
+                }
+            }
+
+            if (isDown && tiltStates[index] && (Time.unscaledTime - tiltDownTime[index]) >= 0.2f)
+            {
+                if (InputManager._instance.GetCupIndex() != index)
+                {
+                    InputManager._instance.SetCupIndex(index);
                 }
             }
         }

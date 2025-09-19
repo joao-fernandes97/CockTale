@@ -1,12 +1,9 @@
-using System.Linq;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
-    [SerializeField] private SceneAsset _Menu;
     [SerializeField] private Clock _clock;
 
     [SerializeField] private TMP_Text _scoreTMP;
@@ -112,7 +109,7 @@ public class EndMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(_Menu.name);
+        SceneManager.LoadScene("Menu");
     }
     public void Replay()
     {

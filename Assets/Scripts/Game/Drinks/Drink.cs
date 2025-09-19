@@ -71,6 +71,7 @@ public class Drink : ScriptableObject
 #endif
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Drink))]
 public class DrinkEditor : Editor
 {
@@ -103,3 +104,4 @@ public class DrinkEditor : Editor
         GUI.color = prev;
     }
 }
+#endif
