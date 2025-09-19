@@ -39,6 +39,7 @@ public class DrinkView : MonoBehaviour
         } while ( !s.IsTag("OrderDrink") );
 
         _drink.sprite = current.Sprite;
+        _drink.color = current.Color;
         _drinkTMP.text = current.name;
         
         Character car = current.Character;
