@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Leandro
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: 86d0c3800e70e4249ae34c2e270f6fe2, type: 3}
-  <Line>k__BackingField: primark
+  <Line>k__BackingField: Primark.
   <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 6f03311f3845e1640b5f8d6497ab56c3, type: 2}
-  <FavoriteLine>k__BackingField: 
+  <FavoriteLine>k__BackingField: Primark beer!
   <Order>k__BackingField: 1

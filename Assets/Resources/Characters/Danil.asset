@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Danil
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: da0bdfb3d407e114bb0b5b43457bd146, type: 3}
-  <Line>k__BackingField: donelide
-  <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 7c698f84977fa044ca0c0adca7106f63, type: 2}
-  <FavoriteLine>k__BackingField: 
+  <Line>k__BackingField: Hmmmm.... UhmmmAaaahhh uhmmm.... Bondgia,yo want uuuh...!
+  <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 5b559bf7f97c2bd439a0568522a838da, type: 2}
+  <FavoriteLine>k__BackingField: Ahooga!!
   <Order>k__BackingField: 1
