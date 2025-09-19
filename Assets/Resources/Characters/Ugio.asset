@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ugio
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: 4fc52411581835f418804acce6d7c87f, type: 3}
-  <Line>k__BackingField: Death approaches little cockroaches
+  <Line>k__BackingField: :3
   <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: a92b3b88638d2594e965efa7acc4c468, type: 2}
-  <FavoriteLine>k__BackingField: 
+  <FavoriteLine>k__BackingField: Death approaches little cockroaches...
   <Order>k__BackingField: 0

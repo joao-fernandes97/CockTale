@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Clara
   m_EditorClassIdentifier: Assembly-CSharp::Character
   <Sprite>k__BackingField: {fileID: 21300000, guid: 1534f8dbbb809e742976a112e17f948f, type: 3}
-  <Line>k__BackingField: CLARIFICATED!!!
+  <Line>k__BackingField: Serve me immediately.
   <FavoriteDrink>k__BackingField: {fileID: 11400000, guid: 4ef46d68b9dd8ea468987b223e86adc2, type: 2}
-  <FavoriteLine>k__BackingField: 
+  <FavoriteLine>k__BackingField: I'll turn you into a frog if it's not perfect!
   <Order>k__BackingField: 1
