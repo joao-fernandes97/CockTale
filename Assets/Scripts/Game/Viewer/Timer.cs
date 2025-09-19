@@ -26,4 +26,9 @@ public class Timer : MonoBehaviour
         _timerTMP.text = _timer.ToString(_format);
     }
     
+    public void End(bool won)
+    {
+        if (won)
+            _timer += Mathf.Floor(_baseTimer/2);
+    }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     // debugs
-    [SerializeField] private Image _debugIngredient;
+    [SerializeField] private Transform _ingredients;
 
     [SerializeField] private DrinkView _drink;
     [SerializeField] private EndMenu _end;
@@ -19,6 +19,7 @@ public class Manager : MonoBehaviour
 
     [SerializeField] private float _ingredientInterval = 0.2f;
     [SerializeField] private float _ingredientFlashTme = 0.8f;
+    [SerializeField] private float _waitTime = 1f;
 
     private Drink _currentDrink;
     private Queue<Ingredient> _currentMix;
@@ -31,6 +32,11 @@ public class Manager : MonoBehaviour
     private void Start()
     {
         _end.gameObject.SetActive(false);
+        for (int i = 0; i < _ingredients.childCount; i++)
+        {
+            GameObject obj = _ingredients.GetChild(i).gameObject;
+            obj.SetActive(false);
+        }
     }
 
     public void OnEnable()
@@ -86,21 +92,48 @@ public class Manager : MonoBehaviour
 
         WaitForSecondsRealtime interval = new(_ingredientInterval);
         WaitForSecondsRealtime flash = new(_ingredientFlashTme);
+        WaitForSecondsRealtime wait = new(_waitTime);
 
         // send signals to arduino to light up each ingredient
-        foreach (Ingredient ingredient in drink.Recipe)
+        for (int i = 0;  i < drink.Recipe.Length; i++)
         {
+            GameObject obj = _ingredients.GetChild(i).gameObject;
+            Image comp = obj.GetComponent<Image>();
+            comp.sprite = drink.Recipe[i].Sprite;
+            obj.SetActive(true);
             // Debug.Log("Ahoo drink: " + ingredient?.name);
 
             yield return interval;
-            // turn on ingredient for arduino
-            _debugIngredient.sprite = ingredient.Sprite;
-            _debugIngredient.color = Color.white;
+        }
+
+        yield return wait;
+
+        for (int j = 0; j < 3; j++)
+        {
+            for (int i = 0; i < _ingredients.childCount; i++)
+            {
+                Image img = _ingredients.GetChild(i).gameObject.GetComponent<Image>();
+                img.color = Color.clear;
+                Debug.Log("ing Clear color from: " + _ingredients.GetChild(i).gameObject.name);
+            }
 
             yield return flash;
-            // turn off ingredient for arduino
-            _debugIngredient.sprite = null;
-            _debugIngredient.color = Color.clear;
+
+            for (int i = 0; i < _ingredients.childCount; i++)
+            {
+                Image img = _ingredients.GetChild(i).gameObject.GetComponent<Image>();
+                img.color = Color.white;
+                Debug.Log("ing White color from: " + _ingredients.GetChild(i).gameObject.name);
+            }
+
+            yield return flash;
+            Debug.Log("ing Clear/White color from ing. ");
+        }
+        
+        for (int i = 0; i < _ingredients.childCount; i++)
+        {
+            GameObject obj = _ingredients.GetChild(i).gameObject;
+            obj.SetActive(false);
         }
 
         // Debug.Log("Ahoo");
@@ -136,6 +169,7 @@ public class Manager : MonoBehaviour
                 {
                     bool won = _end.ServeDrink(_currentDrink, _currentMix.ToArray());
                     _drink.End(won);
+                    _timer.End(won);
                     OnEnable();
                 }
 

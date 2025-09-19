@@ -5,7 +5,7 @@ public class Clock : MonoBehaviour
 {
     [SerializeField, Range(0f, 1f)] private float _timeModifier = 0f;
 
-    private int   _stopCount = 0;
+    private int _stopCount = 0;
     private float _prevScale = 1f;
 
     /// <summary>

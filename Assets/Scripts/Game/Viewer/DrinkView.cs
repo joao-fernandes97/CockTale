@@ -7,6 +7,7 @@ public class DrinkView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _drinkTMP;
     [SerializeField] private Image _drink;
+    [SerializeField] private GameObject _bonus;
     [SerializeField] private Sprite _messedUp;
 
     [SerializeField] private Image _character;
@@ -66,8 +67,17 @@ public class DrinkView : MonoBehaviour
 
             _table.SetSiblingIndex( car.Order );
 
-            _characterLine.text = car.name + ": " +
-                ((car.FavoriteDrink == current) ? car.FavoriteLine : car.Line);
+            _characterLine.text = car.name + ": ";
+
+            if (car.FavoriteDrink == current)
+            {
+                _bonus.SetActive(true);
+                _characterLine.text += car.FavoriteLine;
+            }
+            else
+            {
+                _characterLine.text += car.Line;
+            }
         }
 
         Debug.Log("Ordering Drink." );
@@ -77,6 +87,8 @@ public class DrinkView : MonoBehaviour
     {
         if (!won && _messedUp != null)
             _drink.sprite = _messedUp;
+
+        _bonus.SetActive(false);
 
         Debug.Log("Rolling up.");
         _animator.SetTrigger("RollUp"); // Drink has been ordered, roll it on the table and make character/label disappear, resets to default state
