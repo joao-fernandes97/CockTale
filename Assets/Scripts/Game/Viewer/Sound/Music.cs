@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public class Music : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class Music : Audio
 {
-    [SerializeField] private AudioSource _audioSource;
+    private void Start()
+    {
+        _audioSource.loop = true;
+        _audioSource.Play();
+    }
+
     public float Volume
     {
         get { return _volume; }
@@ -12,6 +18,6 @@ public class Music : MonoBehaviour
             _volume = value;
         }
     }
-    
+
     private float _volume;
 }

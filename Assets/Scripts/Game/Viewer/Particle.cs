@@ -8,12 +8,12 @@ public class Particle : MonoBehaviour
     [SerializeField] private Sprite _debugSprite;
     private ParticleSystem.MainModule _main;
     private ParticleSystemRenderer _renderer;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
         _renderer = System.GetComponent<ParticleSystemRenderer>();
         _main = System.main;
-        _main.stopAction = ParticleSystemStopAction.None;
     }
 
     private void Start()
@@ -47,7 +47,12 @@ public class Particle : MonoBehaviour
         else
             mat.mainTexture = sprite.texture;
 
-        StartCoroutine(Emit());
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+        _coroutine = StartCoroutine(Emit());
 
         Debug.Log("Emiting. ");
     }
@@ -56,5 +61,8 @@ public class Particle : MonoBehaviour
     {
         yield return _waitForSeconds0_5;
         System.Stop();
+
+        _coroutine = null;
+        Debug.Log("Stop Emiting. ");
     }
 }

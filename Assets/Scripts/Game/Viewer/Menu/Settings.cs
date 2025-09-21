@@ -33,6 +33,9 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
+        _volume.value = 1f;
+        _musicVolume.value = 1f;
+
         ChangeBrightness(_brightness.value);
         ChangeVolume(_volume.value);
         ChangeMusicVolume(_musicVolume.value);

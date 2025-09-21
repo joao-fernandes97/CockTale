@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ParticleCollision : MonoBehaviour
 {
     [SerializeField] private Particle _particle;
     [SerializeField] private Manager _manager;
     [SerializeField] private ParticleSystem _splash;
+    [SerializeField] private UnityEvent _plop;
     private ParticleSystem.MainModule _main;
     public static Color Color { get; private set; }
 
@@ -22,6 +24,7 @@ public class ParticleCollision : MonoBehaviour
             _main = ps.main;
             _main.startColor = GetColor();
             ps.Play();
+            _plop.Invoke();
         }
     }
 
