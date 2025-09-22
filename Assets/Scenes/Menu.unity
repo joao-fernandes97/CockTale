@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.003921569, g: 0, b: 0.043137256, a: 0.50980395}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -394,123 +394,127 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865395306964166807, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 907324222648886934, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887564201283765420, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887564201283765420, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1919676123662830253, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1919676123662830253, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3467584445157999313, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3467584445157999313, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3467584445157999313, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 3467584445157999313, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 3467584445157999313, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 3497787619711618256, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3497787619711618256, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3497787619711618256, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 3497787619711618256, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 3497787619711618256, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -308.44
       objectReference: {fileID: 0}
     - target: {fileID: 3532826132115550779, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3532826132115550779, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3532826132115550779, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 3532826132115550779, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 3532826132115550779, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -480.16
       objectReference: {fileID: 0}
     - target: {fileID: 4869121858566411955, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4869121858566411955, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6139558277306627209, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6163578095855575560, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 915380284}
     - target: {fileID: 7151454185364783776, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_Name
       value: DDOL
       objectReference: {fileID: 0}
     - target: {fileID: 7577801588871798479, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7577801588871798479, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7577801588871798479, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 7577801588871798479, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 7577801588871798479, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -161.72
       objectReference: {fileID: 0}
     - target: {fileID: 8697033757273654322, guid: bfb412de98f8da44da458d7e99de85dc, type: 3}
       propertyPath: m_IsActive
@@ -1295,7 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1370,7 +1374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1577,7 +1581,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &2045446998
 GameObject:
@@ -1758,7 +1762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

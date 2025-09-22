@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         if ( canvas == null )
-            canvas = GetComponent<Canvas>();
+            canvas = GetComponentInChildren<Canvas>();
         UpdateCamera();
 
         _settings = FindFirstObjectByType<Settings>();

@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+public class Settings : Menu
 {
     [SerializeField] private GameObject _settingsObject;
     [SerializeField] private Slider _brightness;
@@ -35,6 +35,7 @@ public class Settings : MonoBehaviour
     {
         _volume.value = 1f;
         _musicVolume.value = 1f;
+        _brightness.value = 0.5f;
 
         ChangeBrightness(_brightness.value);
         ChangeVolume(_volume.value);
