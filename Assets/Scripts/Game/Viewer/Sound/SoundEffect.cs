@@ -19,4 +19,11 @@ public class SoundEffect : Audio
         _audioSource.clip = _possibleClips[Random.Range(0, _possibleClips.Length)];
         _audioSource.Play();
     }
+
+    public void Stop()
+    {
+        if (!_audioSource.isPlaying) return;
+
+        _audioSource.Stop();
+    }
 }

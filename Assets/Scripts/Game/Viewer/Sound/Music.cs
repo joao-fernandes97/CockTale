@@ -14,6 +14,7 @@ public class Music : Audio
         get { return _volume; }
         set
         {
+            Debug.Log("Set music volume at: " + value);
             _audioSource.volume = value;
             _volume = value;
         }

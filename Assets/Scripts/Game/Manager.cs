@@ -21,8 +21,6 @@ public class Manager : MonoBehaviour
     [SerializeField] private float _ingredientInterval = 0.2f;
     [SerializeField] private float _ingredientFlashTme = 0.8f;
     [SerializeField] private float _waitTime = 1f;
-    [SerializeField] private UnityEvent _shake;
-    [SerializeField] private UnityEvent _pourDrink;
 
     private Drink _currentDrink;
     private Queue<Ingredient> _currentMix;
@@ -167,8 +165,6 @@ public class Manager : MonoBehaviour
                 // needs 1 second of pouring to complete
                 _pour += Time.deltaTime;
 
-                _pourDrink.Invoke();
-
                 // when finished pouring
                 if (_pour > _pourTime)
                 {
@@ -196,8 +192,6 @@ public class Manager : MonoBehaviour
         {
             // Debug.Log("Shaking. ");
             // shaking meter
-
-            _shake.Invoke();
 
             _end.Shake();
             _shaker.ModifyShaker(dif, _currentMix.Count);

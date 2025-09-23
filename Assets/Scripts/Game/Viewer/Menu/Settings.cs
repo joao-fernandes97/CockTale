@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Settings : Menu
@@ -31,12 +32,27 @@ public class Settings : Menu
         _musicVolume.onValueChanged.AddListener(ChangeMusicVolume);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _volume.value = 1f;
         _musicVolume.value = 1f;
         _brightness.value = 0.5f;
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("New Scene Loaded: " + scene.name);
+        Start();
+    }
+    private void Start()
+    {
         ChangeBrightness(_brightness.value);
         ChangeVolume(_volume.value);
         ChangeMusicVolume(_musicVolume.value);

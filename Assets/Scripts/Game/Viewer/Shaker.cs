@@ -12,6 +12,8 @@ public class Shaker : MonoBehaviour
 
     [SerializeField] private Animator _animator;
     [SerializeField] private float _blendInterval = 0.1f;
+    [SerializeField] private SoundEffect _shakeSound;
+    [SerializeField] private SoundEffect _pourSound;
 
     [SerializeField] private ParticleSystem _drink;
     private ParticleSystem.TrailModule _trail;
@@ -63,6 +65,7 @@ public class Shaker : MonoBehaviour
         {
             value = Mathf.InverseLerp(_blendInterval, 0f, timer);
             _animator.SetFloat("IdleShake", value);
+            _shakeSound.Play();
             yield return null;
 
             timer -= Time.deltaTime;
@@ -74,6 +77,7 @@ public class Shaker : MonoBehaviour
         {
             yield return null;
             _timer -= Time.deltaTime;
+            _shakeSound.Play();
         } while (_timer > 0);
 
         timer = _blendInterval;
@@ -81,6 +85,7 @@ public class Shaker : MonoBehaviour
         {
             value = Mathf.InverseLerp(0f, _blendInterval, timer);
             _animator.SetFloat("IdleShake", value);
+            _shakeSound.Play();
             yield return null;
 
             timer -= Time.deltaTime;
@@ -88,6 +93,7 @@ public class Shaker : MonoBehaviour
         while (timer > 0);
 
         _animator.SetFloat("IdleShake", 0f);
+        _shakeSound.Stop();
         _timer = 0f;
         _shaking = null;
     }
@@ -112,10 +118,12 @@ public class Shaker : MonoBehaviour
         {
             _trail.colorOverLifetime = ParticleCollision.Color;
             _drink.Play();
+            _pourSound.Play();
         }
         else
         {
             _drink.Stop();
+            _pourSound.Stop();
         }
     }
 

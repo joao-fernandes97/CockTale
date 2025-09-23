@@ -32,6 +32,8 @@ public class DrinkView : MonoBehaviour
 
     private IEnumerator SetUpRoutine(Drink current)
     {
+        _bonus.SetActive(false);
+
         AnimatorStateInfo s;
         do
         {
