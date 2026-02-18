@@ -39,7 +39,8 @@ public class Shaker : MonoBehaviour
         float m = _magnitude * Mathf.Min(0.01f, newDif) * 100f;
 
         foreach (ObjectShaker obj in _shakingObject)
-            obj?.Shake(d, m);
+            if (obj != null && obj.gameObject.activeInHierarchy)
+            obj.Shake(d, m);
 
         Shake(d);
 

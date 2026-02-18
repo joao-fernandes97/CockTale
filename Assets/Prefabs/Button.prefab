@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.2500002}
-  m_SizeDelta: {x: 0, y: 2.4999995}
+  m_AnchoredPosition: {x: 0, y: -1.25}
+  m_SizeDelta: {x: 0, y: -7.4999976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7565071101266962324
 CanvasRenderer:
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -380,6 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cddb065a67ea8f47bf62051274c910e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonAudio
+  _audioSource: {fileID: 0}
   _button: {fileID: 50598634449890097}
-  _hover: {fileID: 8300000, guid: 7a2abe0be5bdcbd479694ec45835e021, type: 3}
   _press: {fileID: 8300000, guid: a1c40750c7cc8b6448bcd8f59915a168, type: 3}
+  _hover: {fileID: 8300000, guid: 7a2abe0be5bdcbd479694ec45835e021, type: 3}
+  _unHover: {fileID: 0}

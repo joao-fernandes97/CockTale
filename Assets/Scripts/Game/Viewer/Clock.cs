@@ -4,6 +4,7 @@ using UnityEngine;
 public class Clock : MonoBehaviour
 {
     [SerializeField, Range(0f, 1f)] private float _timeModifier = 0f;
+    [SerializeField] private CanvasGroup _group;
 
     private int _stopCount = 0;
     private float _prevScale = 1f;
@@ -14,6 +15,9 @@ public class Clock : MonoBehaviour
     /// </summary>
     public void StopTime(bool stop = true)
     {
+        _group.interactable = !stop;
+        _group.blocksRaycasts = !stop;
+
         int prev = _stopCount;
         _stopCount += stop ? 1 : -1;
         if (_stopCount < 0) _stopCount = 0;

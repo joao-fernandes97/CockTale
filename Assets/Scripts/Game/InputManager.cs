@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class InputManager : MonoBehaviour
     public bool usingSensors;
     private static List<Ingredient> _ingredients;
     private static List<Drink> _drinks;
+    [SerializeField] private Button _buttons;
     private Drink _currentDrink = null;
     private int _cupPourIndex = -1;
     private int _lastIngredientIndex = -1;
@@ -118,6 +120,11 @@ public class InputManager : MonoBehaviour
         _instance._shakerValue = val;
     }
 
+    private Ingredient _uiIngredient = null;
+    public void TriggerIngredientFromUI(Ingredient ingredient)
+    {
+        _uiIngredient = ingredient;
+    }
 
     /// <summary>
     /// you can access each ingredient's color in their scriptable objects
@@ -126,6 +133,13 @@ public class InputManager : MonoBehaviour
     public static bool PouringIngredient(out Ingredient ingredient)
     {
         ingredient = null;
+
+        if (_instance._uiIngredient != null)
+        {
+            ingredient = _instance._uiIngredient;
+            _instance._uiIngredient = null;
+            return true;
+        }
 
         Keyboard keyboard = Keyboard.current;
         if (keyboard == null)
